@@ -33,6 +33,24 @@ services:
       - ./home:/app
     networks:
       - frontend
+  documentation:
+    stdin_open: true
+    depends_on:
+      - redis
+      - server
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./documentation
+    environment:
+      - PORT=4000
+      - NODE_OPTIONS=--openssl-legacy-provider
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - /app/node_modules
+      - ./documentation:/app
+    networks:
+      - frontend
 networks:
     backend:
     frontend:
