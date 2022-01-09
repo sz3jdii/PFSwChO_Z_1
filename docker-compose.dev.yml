@@ -1,0 +1,38 @@
+version: '3'
+services:
+  redis:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./redis
+    networks:
+      - backend
+  server:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./server
+    ports:
+      - '8080:80'
+    networks:
+      - frontend
+  home:
+    stdin_open: true
+    depends_on:
+      - redis
+      - server
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./home
+    environment:
+      - NODE_OPTIONS=--openssl-legacy-provider
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - /app/node_modules
+      - ./home:/app
+    networks:
+      - frontend
+networks:
+    backend:
+    frontend:
