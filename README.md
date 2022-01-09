@@ -82,5 +82,8 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    docker-compose -f docker-compose.dev.yml up --build --force-recreate
    ```
+### Instalacja - PROD
+
+Instalacja na środowisku produkcyjnym odbywa się z wykorzystaniem pipeline'ów oraz TravisCI.
 
 <p align="right">(<a href="#top">powrót do góry</a>)</p>

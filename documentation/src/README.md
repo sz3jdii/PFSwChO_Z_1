@@ -6,7 +6,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/sz3jdii/PFSwChO_Z_1">
-    <img src="/logo.png" alt="Logo" height="143">
+    <img src="/documentation/logo.png" alt="Logo" height="143">
   </a>
 
 <h3 align="center">Realizacja zadania nr 1 w ramach laboratorium PFSwChO - Adam Świątkowski</h3>
@@ -40,7 +40,7 @@
 <!-- ABOUT THE PROJECT -->
 ## O projekcie
 <div align="center">
-    <img src="diagram.png" alt="diagram">
+    <img src="/documentation/diagram.png" alt="diagram">
 </div>
 Aplikacja została stworzona do działania w środowisku Docker. W środowisku tym, kontener `server` jest głównym routerem ruchu frontendu i rozdziela on ruch na składowe kontenery aplikacji, czyli `documentation`, `home` oraz `calculator`. Analizuje on ruch na podstawie żądania przychodzącego (cząstki po /), a następnie dopasowuję ją do zadeklarowanego serwera upstream.
 
@@ -82,5 +82,8 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    docker-compose -f docker-compose.dev.yml up --build --force-recreate
    ```
+### Instalacja - PROD
+
+Instalacja na środowisku produkcyjnym odbywa się z wykorzystaniem pipeline'ów oraz TravisCI.
 
 <p align="right">(<a href="#top">powrót do góry</a>)</p>
