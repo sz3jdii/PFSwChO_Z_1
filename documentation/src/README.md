@@ -29,7 +29,9 @@
       <a href="#getting-started">Uruchamianie</a>
       <ul>
         <li><a href="#prerequisites">Wymagania</a></li>
-        <li><a href="#installation">Instalacja</a></li>
+        <li><a href="#installation">Instalacja - DEV</a></li>
+        <li><a href="#installation">Instalacja - PROD</a></li>
+        <li><a href="#screenshoots">Zrzuty ekranu</a></li>
       </ul>
     </li>
   </ol>
@@ -86,4 +88,17 @@ This is an example of how to list things you need to use the software and how to
 
 Instalacja na środowisku produkcyjnym odbywa się z wykorzystaniem pipeline'ów oraz TravisCI.
 
+<p align="right">(<a href="#top">powrót do góry</a>)</p>
+
+### Zrzuty ekranu
+
+<div align="center">
+    <img src="/documentation/usage-0.png" alt="usage-0">
+</div>
+<div align="center">
+    <img src="/documentation/usage-1.png" alt="usage-1">
+</div>
+<div align="center">
+    <img src="/documentation/usage-2.png" alt="usage-2">
+</div>
 <p align="right">(<a href="#top">powrót do góry</a>)</p>
