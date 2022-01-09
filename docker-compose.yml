@@ -1,0 +1,36 @@
+version: "3"
+services:
+  home:
+    image: "sz3jdii/lab:fib-home"
+    mem_limit: 128m
+    hostname: home
+    networks:
+      - frontend
+  calculator:
+    image: "sz3jdii/lab:fib-calculator"
+    mem_limit: 128m
+    hostname: calculator
+    environment:
+      - REDIS_HOST=$REDIS_HOST
+      - REDIS_PORT=$REDIS_PORT
+      - REDIS_PASSWORD=$REDIS_PASSWORD
+    networks:
+      - frontend
+      - backend
+  documentation:
+    image: "sz3jdii/lab:fib-documentation"
+    mem_limit: 128m
+    hostname: documentation
+    networks:
+      - frontend
+  server:
+    image: "sz3jdii/lab:fib-server"
+    mem_limit: 128m
+    hostname: server
+    ports:
+      - "80:80"
+    networks:
+      - frontend
+networks:
+    backend:
+    frontend:

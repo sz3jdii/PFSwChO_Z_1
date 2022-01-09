@@ -64,6 +64,7 @@ services:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
       - REDIS_HOST=$REDIS_HOST
+      - REDIS_PORT=$REDIS_PORT
       - REDIS_PASSWORD=$REDIS_PASSWORD
     volumes:
       - /app/node_modules
