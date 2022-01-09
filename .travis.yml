@@ -1,0 +1,21 @@
+sudo: required
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - docker build -t sz3jdii/lab8 -f Dockerfile .
+
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "PFSwChO_LAB_8"
+  env: "Pfswcholab8-env"
+  bucket_name: "elasticbeanstalk-us-east-2-028904916720"
+  bucket_path: "docker-test"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
