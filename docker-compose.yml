@@ -1,14 +1,21 @@
 version: '3'
 services:
-  web:
-    stdin_open: true
-    environment:
-      - CHOKIDAR_USEPOLLING=true
+  redis:
+    restart: always
     build:
-      context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
+      context: ./redis
     ports:
-      - 80:80
-    volumes:
-      - /app/node_modules
-      - .:/app
+      - '127.0.0.1:6379:6379'
+    networks:
+      - backend
+  # server:
+  #   restart: always
+  #   build:
+  #     dockerfile: Dockerfile.dev
+  #     context: ./server
+  #   ports:
+  #     - '127.0.0.1:8080:80'
+networks:
+    backend:
+    frontend:
