@@ -8,7 +8,7 @@ before_install:
   - docker build -t sz3jdii/pfswcho_z_1:test -f ./home/Dockerfile.dev ./home
 
 script:
-  - docker run -e CI=true sz3jdii/pfswcho_z_1:test npm test
+  - docker run -e CI=true sz3jdii/pfswcho_z_1:test npm run build
 
 after_success:
   - docker build -t sz3jdii/pfswcho_z_1:fib-home ./home
