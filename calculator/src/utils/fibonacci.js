@@ -36,9 +36,10 @@ export function FibonacciIterative(naturalNumber) {
   return current;
 }
 export function Fibonacci(naturalNumber) {
+  console.log(process.env);
+
   if (naturalNumber < MAXIMUM_ARRAY_LENGTH_FOR_MEMOIZATION) {
     return FibonacciIterativeMemoized(naturalNumber);
   }
-
   return FibonacciIterative(naturalNumber);
 }

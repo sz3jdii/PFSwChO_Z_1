@@ -22,3 +22,14 @@ after_success:
   - docker push sz3jdii/pfswcho_z_1:fib-server
   - docker push sz3jdii/pfswcho_z_1:fib-documentation
   - docker push sz3jdii/pfswcho_z_1:fib-calculator
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "pfswchoz1"
+  env: "pfswchoz1"
+  bucket_name: "elasticbeanstalk-us-east-2-028904916720"
+  bucket_path: "pfswchoz1"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY

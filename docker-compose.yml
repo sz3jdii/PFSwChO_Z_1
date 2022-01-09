@@ -11,9 +11,8 @@ services:
     mem_limit: 128m
     hostname: calculator
     environment:
-      - REDIS_HOST=$REDIS_HOST
-      - REDIS_PORT=$REDIS_PORT
-      - REDIS_PASSWORD=$REDIS_PASSWORD
+      - REACT_APP_REDIS_HOST=$REDIS_HOST
+      - REACT_APP_REDIS_PORT=$REDIS_PORT
     networks:
       - frontend
       - backend

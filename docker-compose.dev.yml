@@ -63,9 +63,8 @@ services:
       - NODE_OPTIONS=--openssl-legacy-provider
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
-      - REDIS_HOST=$REDIS_HOST
-      - REDIS_PORT=$REDIS_PORT
-      - REDIS_PASSWORD=$REDIS_PASSWORD
+      - REACT_APP_REDIS_HOST=$REDIS_HOST
+      - REACT_APP_REDIS_PORT=$REDIS_PORT
     volumes:
       - /app/node_modules
       - ./calculator:/app
