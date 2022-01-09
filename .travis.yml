@@ -5,20 +5,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t sz3jdii/PFSwChO_Z_1:test -f ./home/Dockerfile.dev ./home
+  - docker build -t sz3jdii/pfswcho_z_1:test -f ./home/Dockerfile.dev ./home
 
 script:
-  - docker run -e CI=true sz3jdii/PFSwChO_Z_1:test npm test
+  - docker run -e CI=true sz3jdii/pfswcho_z_1:test npm test
 
 after_success:
-  - docker build -t sz3jdii/PFSwChO_Z_1:fib-home ./home
-  - docker build -t sz3jdii/PFSwChO_Z_1:fib-server ./server
-  - docker build -t sz3jdii/PFSwChO_Z_1:fib-documentation ./documentation
-  - docker build -t sz3jdii/PFSwChO_Z_1:fib-calculator ./calculator
+  - docker build -t sz3jdii/pfswcho_z_1:fib-home ./home
+  - docker build -t sz3jdii/pfswcho_z_1:fib-server ./server
+  - docker build -t sz3jdii/pfswcho_z_1:fib-documentation ./documentation
+  - docker build -t sz3jdii/pfswcho_z_1:fib-calculator ./calculator
   # Logowanie do docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Push obrazow do docker hub
-  - docker push sz3jdii/PFSwChO_Z_1:fib-home
-  - docker push sz3jdii/PFSwChO_Z_1:fib-server
-  - docker push sz3jdii/PFSwChO_Z_1:fib-documentation
-  - docker push sz3jdii/PFSwChO_Z_1:fib-calculator
+  - docker push sz3jdii/pfswcho_z_1:fib-home
+  - docker push sz3jdii/pfswcho_z_1:fib-server
+  - docker push sz3jdii/pfswcho_z_1:fib-documentation
+  - docker push sz3jdii/pfswcho_z_1:fib-calculator

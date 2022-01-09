@@ -1,13 +1,13 @@
 version: "3"
 services:
   home:
-    image: "sz3jdii/lab:fib-home"
+    image: "sz3jdii/pfswcho_z_1:fib-home"
     mem_limit: 128m
     hostname: home
     networks:
       - frontend
   calculator:
-    image: "sz3jdii/lab:fib-calculator"
+    image: "sz3jdii/pfswcho_z_1:fib-calculator"
     mem_limit: 128m
     hostname: calculator
     environment:
@@ -18,13 +18,13 @@ services:
       - frontend
       - backend
   documentation:
-    image: "sz3jdii/lab:fib-documentation"
+    image: "sz3jdii/pfswcho_z_1:fib-documentation"
     mem_limit: 128m
     hostname: documentation
     networks:
       - frontend
   server:
-    image: "sz3jdii/lab:fib-server"
+    image: "sz3jdii/pfswcho_z_1:fib-server"
     mem_limit: 128m
     hostname: server
     ports:
