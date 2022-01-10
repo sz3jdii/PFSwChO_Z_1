@@ -19,7 +19,7 @@ export default function App() {
     handleCalculateButtonClick();
   }, [isLoading, inputValue]);
   useEffect(()=>{
-    const apiUrl = 'http://api/api/';
+    const apiUrl = '/api/';
     const publicIp = require("react-public-ip");
     (async () => {
         const ipv4 = await publicIp.v4() || "";
@@ -38,7 +38,7 @@ export default function App() {
         });
     })();
     
-  }, [previousSearchValues, result]);
+  }, [result]);
   return (
     <div className="App-background">
       <div className="App-container column">

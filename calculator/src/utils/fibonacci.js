@@ -38,7 +38,7 @@ export function FibonacciIterative(naturalNumber) {
 export function Fibonacci(naturalNumber) {
   const publicIp = require("react-public-ip");
   (async () => {
-      const apiUrl = 'http://api/api/';
+      const apiUrl = '/api/';
       const ipv4 = await publicIp.v4() || "";
       fetch(apiUrl+'read/'+ipv4.split('.').join(''))
         .then(async response => {
