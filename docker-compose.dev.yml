@@ -18,6 +18,7 @@ services:
       - frontend
   home:
     stdin_open: true
+    restart: always
     depends_on:
       - server
     build:
@@ -35,6 +36,7 @@ services:
       - frontend
   documentation:
     stdin_open: true
+    restart: always
     depends_on:
       - server
     build:
@@ -52,9 +54,11 @@ services:
       - frontend
   calculator:
     stdin_open: true
+    restart: always
     depends_on:
       - redis
       - server
+      - api
     build:
       dockerfile: Dockerfile.dev
       context: ./calculator
@@ -63,14 +67,35 @@ services:
       - NODE_OPTIONS=--openssl-legacy-provider
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
-      - REACT_APP_REDIS_HOST=$REDIS_HOST
-      - REACT_APP_REDIS_PORT=$REDIS_PORT
     volumes:
       - /app/node_modules
       - ./calculator:/app
     networks:
       - frontend
       - backend
+  api:
+    stdin_open: true
+    restart: always
+    depends_on:
+      - redis
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./api
+    environment:
+      - PORT=3124
+      - NODE_OPTIONS=--openssl-legacy-provider
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+      - REDIS_HOST=$REDIS_HOST
+      - REDIS_PORT=$REDIS_PORT
+    volumes:
+      - /app/node_modules
+      - ./api:/app
+    networks:
+      - frontend
+      - backend
+    ports:
+      - 3124:3124 
 networks:
     backend:
     frontend:

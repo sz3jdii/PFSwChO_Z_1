@@ -10,12 +10,19 @@ services:
     image: "sz3jdii/pfswcho_z_1:fib-calculator"
     mem_limit: 128m
     hostname: calculator
-    environment:
-      - REACT_APP_REDIS_HOST=$REDIS_HOST
-      - REACT_APP_REDIS_PORT=$REDIS_PORT
     networks:
       - frontend
       - backend
+  api:
+    image: "sz3jdii/pfswcho_z_1:fib-api"
+    mem_limit: 128m
+    hostname: api
+    environment:
+      - REDIS_HOST=$REDIS_HOST
+      - REDIS_PORT=$REDIS_PORT
+    networks:
+      - frontend
+      - backend    
   documentation:
     image: "sz3jdii/pfswcho_z_1:fib-documentation"
     mem_limit: 128m

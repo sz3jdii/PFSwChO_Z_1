@@ -1,5 +1,4 @@
 /* global BigInt */
-
 export const MAXIMUM_ARRAY_LENGTH_FOR_MEMOIZATION = 10_000;
 export const initialCache = [BigInt(0), BigInt(1), BigInt(1)];
 export let fibonacciCache = [...initialCache];
@@ -36,8 +35,22 @@ export function FibonacciIterative(naturalNumber) {
   return current;
 }
 export function Fibonacci(naturalNumber) {
-  console.log(process.env);
+  const redis = require('redis');
+  const client = redis.createClient({
+      host: process.env.REACT_APP_REDIS_HOST,
+      port: process.env.REACT_APP_REDIS_PORT
+  });
 
+
+  client.set('foo', 'bar', (err, reply) => {
+      if (err) throw err;
+      console.log(reply);
+
+      client.get('foo', (err, reply) => {
+          if (err) throw err;
+          console.log(reply);
+      });
+  });
   if (naturalNumber < MAXIMUM_ARRAY_LENGTH_FOR_MEMOIZATION) {
     return FibonacciIterativeMemoized(naturalNumber);
   }
