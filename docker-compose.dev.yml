@@ -94,8 +94,6 @@ services:
     networks:
       - frontend
       - backend
-    ports:
-      - 3124:3124 
 networks:
     backend:
     frontend:
