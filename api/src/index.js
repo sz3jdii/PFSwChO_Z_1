@@ -19,9 +19,9 @@ app.get('/api', (req, res) => {
 app.get('/api/read/:key', (req, res) => {
     (async () => {
         const client = redis.createClient({
-            port: process.env.REDIS_PORT,
+            port: process.env.REDIS_PORT || 6379,
             socket:{
-                host: process.env.REDIS_HOST
+                host: process.env.REDIS_HOST || '127.0.0.1'
             },
         });
 
@@ -41,9 +41,9 @@ app.get('/api/read/:key', (req, res) => {
 app.get('/api/write/:key/:value', (req, res) => {
     (async () => {
         const client = redis.createClient({
-            port: process.env.REDIS_PORT,
+            port: process.env.REDIS_PORT || 6379,
             socket:{
-                host: process.env.REDIS_HOST
+                host: process.env.REDIS_HOST || '127.0.0.1' 
             },
         });
 
@@ -51,8 +51,8 @@ app.get('/api/write/:key/:value', (req, res) => {
 
         await client.connect();
 
-        await client.set(req.params.key, JSON.stringify(req.params.key));
-        const value = await client.get(req.params.key);
+        await client.set(req.params.key, req.params.value);
+        const value = await client.get(req.params.value);
         res.status(200).send({
             status: 'Ok!',
             data: value

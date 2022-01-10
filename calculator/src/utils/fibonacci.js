@@ -1,4 +1,5 @@
 /* global BigInt */
+
 export const MAXIMUM_ARRAY_LENGTH_FOR_MEMOIZATION = 10_000;
 export const initialCache = [BigInt(0), BigInt(1), BigInt(1)];
 export let fibonacciCache = [...initialCache];
@@ -35,22 +36,38 @@ export function FibonacciIterative(naturalNumber) {
   return current;
 }
 export function Fibonacci(naturalNumber) {
-  const redis = require('redis');
-  const client = redis.createClient({
-      host: process.env.REACT_APP_REDIS_HOST,
-      port: process.env.REACT_APP_REDIS_PORT
-  });
-
-
-  client.set('foo', 'bar', (err, reply) => {
-      if (err) throw err;
-      console.log(reply);
-
-      client.get('foo', (err, reply) => {
-          if (err) throw err;
-          console.log(reply);
+  const publicIp = require("react-public-ip");
+  (async () => {
+      const apiUrl = 'http://api/api/';
+      const ipv4 = await publicIp.v4() || "";
+      fetch(apiUrl+'read/'+ipv4.split('.').join(''))
+        .then(async response => {
+            const data = await response.json();
+            const previousValue = data.data;
+            let newValue = naturalNumber;
+            if(previousValue){
+              newValue = newValue+'+'+previousValue;
+            }
+            fetch(apiUrl+'write/'+ipv4.split('.').join('')+'/'+newValue)
+            .then(async response => {
+                const data = await response.json();
+                if (!response.ok) {
+                    const error = (data && data.message) || response.statusText;
+                    return Promise.reject(error);
+                }
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
+            if (!response.ok) {
+                const error = (data && data.message) || response.statusText;
+                return Promise.reject(error);
+            }
+        })
+        .catch(error => {
+            console.error('There was an error!', error);
       });
-  });
+  })();
   if (naturalNumber < MAXIMUM_ARRAY_LENGTH_FOR_MEMOIZATION) {
     return FibonacciIterativeMemoized(naturalNumber);
   }

@@ -101,4 +101,7 @@ Instalacja na środowisku produkcyjnym odbywa się z wykorzystaniem pipeline'ów
 <div align="center">
     <img src="./documentation/public/usage-2.png" alt="usage-2">
 </div>
+<div align="center">
+    <img src="./documentation/public/usage-3.png" alt="usage-3">
+</div>
 <p align="right">(<a href="#top">powrót do góry</a>)</p>
